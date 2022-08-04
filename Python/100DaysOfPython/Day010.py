@@ -18,13 +18,13 @@ stop_game: bool = False
 print("Welcome to Calculator")
 
 while not stop_game:
-    first_number = int(input("First Number: "))
+    first_number = float(input("First Number: "))
     print("+", end="  ")
     print("-", end="  ")
     print("*", end="  ")
     print("/")
     operator = input("Choose the operator: ")
-    second_number = int(input("Second Number: "))
+    second_number = float(input("Second Number: "))
 
     result = calcular(first_number, operator, second_number)
     print(f"{first_number} {operator} {second_number} = {result}")
