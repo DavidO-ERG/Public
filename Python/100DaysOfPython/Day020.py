@@ -27,6 +27,7 @@ def keyboard():
     screen.onkey(key="Left", fun=snake.move_left)
     screen.onkey(key="Right", fun=snake.move_right)
     screen.onkey(key="q", fun=screen.bye)
+    screen.onkey(key="r", fun=snake.reset_snake)
 
 
 def game_walls(_snake):
@@ -38,24 +39,29 @@ def game_walls(_snake):
 
 
 keyboard()
-points.plus_one()
+points.update_points()
 is_game_on = True
 while is_game_on:
-    if game_walls(snake.snake):
-        is_game_on = False
-        print(f"GAME OVER!!! Total points: {points.points}. You hit the wall.")
-        break
 
+    if game_walls(snake.snake):
+        # is_game_on = False
+        # print(f"GAME OVER!!! Total points: {points.points}. You hit the wall.")
+        # break
+        snake.reset_snake()
+        points.reset_points()
     for n in snake.snake[1:]:
         if snake.head.distance(n) < 1:
-            is_game_on = False
-            print(f"GAME OVER!!! Total points: {points.points}. You hit yourself.")
-            break
+            # is_game_on = False
+            # print(f"GAME OVER!!! Total points: {points.points}. You hit yourself.")
+            # break
+            snake.reset_snake()
+            points.reset_points()
 
     if snake.head.distance(food) < 14:
         food.new_location()
         snake.add_new()
         points.plus_one()
+        points.update_points()
 
     screen.update()
     sleep(0.05)
