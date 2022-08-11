@@ -54,17 +54,30 @@ def exercise4():
 
 
 def exercise5():
-    pass
+    sentence = "What is the Airspeed Velocity of an Unladen Swallow?"
+    new_dict: dict = {line: len(line) for line in sentence.split()}
+    print(new_dict)
 
 
 def exercise6():
-    pass
+    weather_c = {
+        "Monday": 12,
+        "Tuesday": 14,
+        "Wednesday": 15,
+        "Thursday": 14,
+        "Friday": 21,
+        "Saturday": 22,
+        "Sunday": 24,
+    }
+    new_dict: dict = {x: (y * 9 / 5) + 32 for x, y in weather_c.items()}
+    print(new_dict)
 
 
-# exercise1()
-# exercise1_with_comprehensions()
-# exercise2()
-# exercise3()
-# exercise4()
+exercise1()
+exercise1_with_comprehensions()
+exercise2()
+exercise3()
+exercise4()
 exercise5()
 exercise6()
+
