@@ -30,7 +30,7 @@ def generator():
     window.clipboard_append(ip_pass.get())
 
 
-# ---------------------------- SAVE TO FILE ------------------------------ #
+# ---------------------------- CHECK FILE ------------------------------ #
 def check_file():
     try:
         return pd.read_csv(file_name)
@@ -44,6 +44,19 @@ def check_file():
         return pd.read_csv(file_name)
 
 
+# ---------------------------- SEARCH FILE ------------------------------ #
+def search_file():
+    check_file()
+    try:
+        with open(file_name) as file:
+            for line in file.readlines():
+                if ip_website.get() in line[0].split(","):
+                    messagebox.showinfo(title="PassGen - Search Results", message=f"{line}")
+    finally:
+        messagebox.showinfo(title="PassGen - Search Results", message="Results finished!")
+
+
+# ---------------------------- SAVE TO FILE ------------------------------ #
 def add_to_file():
     check_file()
 
@@ -92,18 +105,20 @@ lb_email.grid(row=2, column=0)
 lb_pass.grid(row=3, column=0)
 
 # Inputs
-ip_website = tk.Entry(width=41)
+ip_website = tk.Entry(width=21)
 ip_email = tk.Entry(width=41)
-ip_pass = tk.Entry(width=20)
-ip_website.grid(row=1, column=1, columnspan=2)
+ip_pass = tk.Entry(width=21)
+ip_website.grid(row=1, column=1, columnspan=1)
 ip_website.focus()
 ip_email.grid(row=2, column=1, columnspan=2)
 ip_pass.grid(row=3, column=1)
 
 # Buttons
-bt_generate = tk.Button(text="Generate Password", command=generator)
-bt_add = tk.Button(text="Add", width=36, command=add_to_file)
+bt_generate = tk.Button(text="Generate Password", width=15, command=generator)
+bt_add = tk.Button(text="Add", width=35, command=add_to_file)
+bt_search = tk.Button(text="Search", width=15, command=search_file)
 bt_generate.grid(row=3, column=2, pady=3)
 bt_add.grid(row=4, column=1, columnspan=2, pady=5)
+bt_search.grid(row=1, column=2, pady=3)
 
 window.mainloop()
