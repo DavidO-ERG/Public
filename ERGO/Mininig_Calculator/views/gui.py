@@ -46,9 +46,10 @@ class Ergo:
         self.input_7: tk.Entry = tk.Entry(self.window, width=8, font=self.FONT)
 
         # Call API or insert 0(zero) in all fields
-        if api_calls.test_api():
-            results_api_price = api_calls.call_api_price()
-            results_api_coin = api_calls.call_api_coin()
+        test_apis = api_calls.test_api()
+        if test_apis:
+            results_api_coin = test_apis[0]
+            results_api_price = test_apis[1]
             self.input_1.insert(0, str(results_api_price["price"] / 100_000_000))
             self.input_2.insert(0, str(results_api_coin["nethash"]))
             self.input_3.insert(0, str(results_api_coin["block_reward"]))
