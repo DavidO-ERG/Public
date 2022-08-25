@@ -1,3 +1,8 @@
+[OLD Version] Please check the new repository [ergo-miner-calc](https://github.com/DavidO-crypto/ergo-miner-calc) for this calculator written in Java.
+
+
+---
+
 Welcome to **_Ergo Mining Calculator_**
 
 ![image](https://user-images.githubusercontent.com/21132833/185195892-ad2471ec-8d2b-4b3f-8c78-84e9f7dcf2fe.png)
