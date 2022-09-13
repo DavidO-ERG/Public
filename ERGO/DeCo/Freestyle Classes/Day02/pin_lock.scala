@@ -10,14 +10,15 @@ object pin_lock {
     println("Welcome to the Pin-Lock Example!")
     println("-" * 50)
 
-    println("Defining PIN: ")
-    val pinNumber = scala.io.StdIn.readLine()
-    //    val pinNumber = "123456789"
+    println("Defining and Hashing PIN: ")
+    val hashedPin = Blake2b256(scala.io.StdIn.readLine().getBytes())
+    //    val hashedPin = Blake2b256("123456789".getBytes())
+    println(hashedPin)
     println("-" * 50)
 
     val pinLockScript =
       s"""
-      sigmaProp(INPUTS(0).R4[Coll[Byte]].get == blake2b256(OUTPUTS(0).R4[Coll[Byte]].get))
+      sigmaProp(INPUTS(0).R4[Coll[Byte]].get == OUTPUTS(0).R4[Coll[Byte]].get)
     """.stripMargin
     val pinLockContract = ErgoScriptCompiler.compile(Map(), pinLockScript)
 
@@ -40,11 +41,6 @@ object pin_lock {
     println("Creating a test Buyer")
     val userParty = blockchainSim.newParty("buyer")
     println(userParty)
-    println("-" * 50)
-
-    println("Hashing the chosen PIN")
-    val hashedPin = Blake2b256(pinNumber.getBytes())
-    println(hashedPin)
     println("-" * 50)
 
     println("Create variable for 'funds' to add to wallet (value in nanoErgs)")
@@ -84,7 +80,7 @@ object pin_lock {
     println("Create a box to store the guard script, withdraw half of user funds and pay for Fees")
     val withdrawBox = Box(value = userFunds / 2 - MinTxFee,
       script = contract(userParty.wallet.getAddress.pubKey),
-      register = (R4 -> pinNumber.getBytes()))
+      register = (R4 -> hashedPin))
     println(withdrawBox)
     println("-" * 50)
 
