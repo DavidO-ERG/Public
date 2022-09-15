@@ -14,4 +14,4 @@
 ### For Ergo
   - [Ergo](https://github.com/DavidO-crypto/Public/tree/main/ERGO)
   - [Mining Calculator](https://github.com/DavidO-crypto/Public/tree/main/ERGO/Mininig_Calculator)
-
+  - [DeCo](https://github.com/DavidO-ERG/Public/tree/main/ERGO/DeCo)
