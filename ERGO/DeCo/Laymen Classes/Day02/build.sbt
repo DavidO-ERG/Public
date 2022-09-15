@@ -9,26 +9,26 @@ lazy val myResolvers = Seq(
 	sonatypeReleases,
 	sonatypeSnapshots,
 	Resolver.mavenCentral
-	)
+)
 
 lazy val commonSettings = Seq(
 	name := "pin_lock",
 	organization := "portugal.ergo",
 	version := "0.1.0",
 	scalaVersion := "2.12.10",
-	)
+)
 
 lazy val myLibraries = Seq(
 	"org.ergoplatform" %% "ergo-playground-env" % "0.0.0-65-c91117ae-SNAPSHOT"
-	)
+)
 
 lazy val myOptions = Seq(
 	"-language:higherKinds",
 	"-deprecation",
-    "-encoding", "UTF-8",
-    "-feature",
-    "-unchecked"
-	)
+	"-encoding", "UTF-8",
+  "-feature",
+  "-unchecked"
+)
 
 lazy val root = (project in file("."))
 	.settings(
@@ -36,4 +36,4 @@ lazy val root = (project in file("."))
 		libraryDependencies ++= myLibraries,
 		scalacOptions ++= myOptions,
 		resolvers ++= myResolvers
-	)
+)
